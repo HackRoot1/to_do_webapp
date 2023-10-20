@@ -1,6 +1,5 @@
 <?php 
     require("header.php");
-    
 ?>
 
         <div class="dash-content">
@@ -11,7 +10,7 @@
                         <i class="uil uil-filter"></i>
                         <span class="text">Filters</span>
                     </div>
-                    <div id = "filter-close-open">
+                    <div id = "filter-close-open" style = "cursor: pointer">
                         <!-- <i class="uil uil-minus" id = "minus" style = "display: none"></i> -->
                         <i class="uil uil-minus" id = "minus"></i>
                     </div>
@@ -29,12 +28,18 @@
                     </div>
 
                     <div class = "filter-options">
-                        <select name="" id="">
-                            <option value="">one</option>
-                            <option value="">two</option>
-                            <option value="">three</option>
-                            <option value="">four</option>
-                        </select>
+                        <div>
+                            <input type="checkbox" class = "checkboxBtn" value="all" id="all" checked>
+                            <label for="all">All</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class = "checkboxBtn" value="1" id="completed">
+                            <label for="completed">completed</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class = "checkboxBtn" value="0" id="pending">
+                            <label for="pending">pending</label>
+                        </div>
                     </div>
                     
                     <div class = "filter-options">
@@ -125,6 +130,32 @@
 
             loadData();
 
+
+            // filter search using checkboxes
+            $(document).on("click", ".checkboxBtn", function(){
+                var id = [];
+                $(":checkbox:checked").each(function(key){
+                    id[key] = $(this).val();
+                });
+
+                if(id == ""){
+                    loadData();
+                }else{
+                    $.ajax({
+                        url : "filter_tasks_data.php",
+                        type : "POST",
+                        data : {id : id}, 
+                        success : function(data){
+                            if(data){
+                                // alert(data);
+                                $(".activity-data tbody").html(data);
+                            }else{
+                                $(".activity-data tbody").html("Only single data found");
+                            }
+                        }
+                    });
+                }
+            });
 
             // deleting records data from table
             $(document).on("click", "#delete", function(){
@@ -233,5 +264,4 @@
 
 <?php 
     require("footer.php");
-
 ?>

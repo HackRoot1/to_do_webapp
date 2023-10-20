@@ -85,6 +85,38 @@
             outline: none;
         }
     </style>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("fname").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (name === "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Email must be filled out");
+                return false;
+            } else if (!isValidEmail(email)) {
+                alert("Invalid email address");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Password must be filled out");
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidEmail(email) {
+            var emailRegex = /\S+@\S+\.\S+/;
+            return emailRegex.test(email);
+        }
+    </script>
 </head>
 <body>
 
@@ -95,7 +127,7 @@
                 WELCOME
             </div>
             <div class="login-form">
-                <form action="./registration_data.php" method = "POST">
+                <form action="./registration_data.php" name = "registrationForm" method = "POST" onsubmit="validateForm()">
                     <div>
                         <label for="fname">First Name:</label>
                         <input type="text" name = "firstName" id = "fname" placeholder="Enter your username">

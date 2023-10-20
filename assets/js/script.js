@@ -1,4 +1,3 @@
-
 // script for dark and light theme button
 
 const body = document.querySelector("body"),

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show-data{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="show-data">
+        This is a text
+    </div>
+
+    <button id = "btn-click">Click</button>
+    <button id = "btn-remove">Remove</button>
+
+    <!-- jquery cdn link -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#btn-click").on("click", function(){
+                $("#show-data").slideDown();
+            });
+            
+            $("#btn-remove").on("click", function(){
+                $("#show-data").slideUp();
+            });
+
+        });
+    </script>
+</body>
+</html>

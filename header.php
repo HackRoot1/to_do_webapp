@@ -26,7 +26,9 @@ if (session_status() === PHP_SESSION_NONE) {
         // Sanitize the user input to prevent SQL injection
         $userId = mysqli_real_escape_string($conn, $_SESSION['id']);
         // Query the database to retrieve user information
+
         $userData = mysqli_query($conn, "SELECT * FROM users_data WHERE id = $userId");
+        
         // Check if the query was successful
         if ($userData) {
             $userInfo = mysqli_fetch_assoc($userData);

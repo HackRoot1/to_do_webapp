@@ -15,7 +15,6 @@
             $_SESSION['id'] = $data['id'];
             header("Location: ./index.php");
         }else{
-            
             header("Location: ./login.php");
         }
     }
