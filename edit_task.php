@@ -10,7 +10,6 @@
     $due_date = $_POST['due_date'];
     $category = $_POST['category'];
 
-    
     $query = "  UPDATE 
                     tasks
                 SET
@@ -28,5 +27,4 @@
     }else{
         echo "Record not updated";
     }  
-
 ?>

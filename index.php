@@ -20,8 +20,10 @@
 
             <div class="activity">
                 <div class="title">
-                    <i class="uil uil-clock-two"></i>
-                    <span class="text">Upcoming Tasks</span>
+                    <div>
+                        <i class="uil uil-clock-two"></i>
+                        <span class="text">Upcoming Tasks</span>
+                    </div>
                 </div>
 
                 <div id = "result-data">

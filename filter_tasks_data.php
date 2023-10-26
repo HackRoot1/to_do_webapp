@@ -2,22 +2,33 @@
     require("config.php");
     session_start();
     $filters = $_POST['id'];
-    $filters_data = implode(', ', $filters);
+
+    if($filters == "All"){
+        $filters_data = "all";
+    }elseif($filters == "Active"){
+        $filters_data = "all";
+    }elseif($filters == "Pending"){
+        $filters_data = "0";
+    }elseif($filters == "Completed"){
+        $filters_data = "1";
+    }
+
+
+    // $filters_data = implode(', ', $filters);
 
     if($filters_data != "all"){
-        
 
-        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In (";
-        foreach ($filters as $key => $value){
-            if(count($filters) == 1){
-                $query .= "'" .$value. "'";
-            }elseif($value == end($filters)){
-                $query .= "'" .$value. "'";
-            }else{
-                $query .= "'" .$value. "', ";
-            }
-        }
-        $query .= ")";
+        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data)";
+        // foreach ($filters as $key => $value){
+        //     if(count($filters) == 1){
+        //         $query .= "'" .$value. "'";
+        //     }elseif($value == end($filters)){
+        //         $query .= "'" .$value. "'";
+        //     }else{
+        //         $query .= "'" .$value. "', ";
+        //     }
+        // }
+        // $query .= ")";
     }else{
         $filters_data = "0, 1";
         $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data)";

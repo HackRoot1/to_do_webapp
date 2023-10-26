@@ -13,7 +13,6 @@
 
         <div id = "result-data">
             <div class="success-result"></div>
-            <div class="error-result"></div>
         </div>
 
         <form id = "form-data">
@@ -36,7 +35,7 @@
             <div>
                 <div class = "form-btn">
                     <input type="reset" name = "reset">
-                    <button id = "submitBtn">Submit</button>
+                    <button type="button" id = "submitBtn">Submit</button>
                 </div>
             </div>
         </form>
@@ -45,15 +44,27 @@
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     
         <script>
-
             $(document).ready(function(){
-                $("#submitBtn").click(function(){
+                $("#submitBtn").click(function(e){
+                    e.preventDefault();
                     $.ajax({
                         url : "add_task_data.php",
                         type : "POST",
                         data : $("#form-data").serialize(),
                         success : function(data){
-                            $("#result-data .success-result").html(data).slideDown(2000).slideUp(2000);
+
+                            // applied validations
+                            if(data == 0){
+                                $("#result-data .success-result").html("Please enter the task title.").slideDown(2000);
+                            }else if(data == 1){
+                                $("#result-data .success-result").html("Please enter the task description.").slideDown(2000);
+                            }else if(data == 2){
+                                $("#result-data .success-result").html("Please enter the task category.").slideDown(2000);
+                            }else{
+                                $("#result-data .success-result").html(data).slideDown(2000).slideUp(2000);
+                                $("#form-data").trigger("reset");
+                                // alert(data);
+                            }
                         }
                     });
                 });

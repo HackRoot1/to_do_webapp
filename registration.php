@@ -53,7 +53,7 @@
             text-align: center;
         }
 
-        #form-section .form-data div{
+        #form-section .form-data div:not(#error){
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -83,6 +83,19 @@
             border-radius: 50px;
             border: none;
             outline: none;
+        }
+
+        #error{
+            text-align: center;
+            background-color: red;
+            color: white;
+            width: 80%;
+            height: 50px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 20px;
+            border-radius: 10px;
+            display: none ;
         }
     </style>
     <script>
@@ -126,8 +139,9 @@
             <div class ="login-title">
                 WELCOME
             </div>
+            <div id="error"></div>
             <div class="login-form">
-                <form action="./registration_data.php" name = "registrationForm" method = "POST" onsubmit="validateForm()">
+                <form action="" name = "registrationForm" method = "POST">
                     <div>
                         <label for="fname">First Name:</label>
                         <input type="text" name = "firstName" id = "fname" placeholder="Enter your username">
@@ -162,5 +176,79 @@
         </div>
     </section>
 
+    
+<?php 
+
+if(isset($_POST['submit'])){
+    include("config.php");
+
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if($firstName == "" || $lastName == "" || $email == "" || $username == "" || $password == "" || strlen($password) <= 6){
+        echo "
+        <script>
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error').innerText = 'Please fill the required fields';
+        </script>
+        ";
+        // echo "error";
+    }else{
+
+        $password = md5($_POST['password']);
+        $checkQuery = "SELECT * FROM users_data WHERE username = '{$username}' AND password = '{$password}'; ";
+        $checkQueryResult = mysqli_query($conn, $checkQuery);
+
+        if(mysqli_num_rows($checkQueryResult) === 1){
+            echo "
+            <script>
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').innerText = 'The username is already registered. Please login.';
+            </script>
+            ";
+            // echo "The username is already registered. Please login.";
+        }else{
+
+            $query = "  INSERT INTO 
+                            users_data(firstName, lastName, email, username, password) 
+                        VALUES
+                            ('$firstName', '$lastName', '$email', '$username', '$password')";
+
+        
+            if(mysqli_query($conn, $query)){
+                $query2 = "SELECT * FROM users_data WHERE username = '$username' AND password = '$password'";
+                $result = mysqli_query($conn, $query2) or die("Query Failed");
+                $data = mysqli_fetch_assoc($result);
+                if(mysqli_num_rows($result) > 0){
+                    ob_start();
+                    session_start();
+                    session_unset();
+                    $_SESSION['id'] = $data['id'];
+                    header("Location: index.php");
+                    ob_end_clean();
+                    exit();
+                }else{
+                    ob_start();
+                    header("Location: login.php");
+                    ob_end_clean();
+                    exit();
+                }
+            }else{
+                echo "
+                <script>
+                    document.getElementById('error').style.display = 'block';
+                    document.getElementById('error').innerText = 'Query Not run.';
+                </script>
+                ";
+                // echo "Query Not run.";
+            }
+        }
+    }
+}
+
+
+?>
 </body>
 </html>
