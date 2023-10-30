@@ -25,8 +25,8 @@
                 <input type="text" id = "taskDescription" name = "task_description">
             </div>
             <div>
-                <label for="dueDate">Due Date</label>
-                <input type="date" id = "dueDate" name = "due_date">
+                <label for="dateInput">Due Date</label>
+                <input type="date" id = "dateInput" name = "due_date">
             </div>
             <div>
                 <label for="category">Category</label>
@@ -46,6 +46,14 @@
         <script>
             $(document).ready(function(){
                 $("#submitBtn").click(function(e){
+                    var inputDate = new Date($('#dateInput').val());
+                    var currentDate = new Date();
+
+                    if (inputDate < currentDate || inputDate == "" || inputDate == null) {
+                        alert('Please select an upcoming date.');
+                        return false;
+                    }
+
                     e.preventDefault();
                     $.ajax({
                         url : "add_task_data.php",
