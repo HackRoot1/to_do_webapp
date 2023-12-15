@@ -32,6 +32,10 @@ if (session_status() === PHP_SESSION_NONE) {
         // Check if the query was successful
         if ($userData) {
             $userInfo = mysqli_fetch_assoc($userData);
+            // echo "<pre>";
+            // print_r($userInfo);
+            // echo "</pre>";
+            // exit();
         } else {
             // Handle database query error, you may want to log or display an error message
             // For example: die("Database query error: " . mysqli_error($conn));
@@ -60,6 +64,32 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     
 
+    <!-- ======== jquery link ========= -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <script>
+
+        $(document).ready(function(){
+            $("#global-search").on("input", function(){
+                var value = $(this).val();
+
+                // alert(value);
+                // search through ajax
+                $.ajax({
+                    url : "global-search.php",
+                    method : "POST",
+                    data : { search : value},
+                    success : function(data){
+                        if(data){
+                            $(".activity-data tbody").html(data);
+                        }else{
+                            loadData();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <title>Dashboard</title>
 </head>
 <body>
@@ -126,7 +156,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <i class="uil uil-bars sidebar-toggle"></i>
             <div class="search-box">
                 <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here....">
+                <input type="text" id = "global-search" placeholder="Search here....">
             </div>
             <div id = "model-open">
                 <div>
@@ -141,3 +171,4 @@ if (session_status() === PHP_SESSION_NONE) {
         <div id="model-box">
             <a href = "./setting_page.php">Settings</a>
         </div>
+        

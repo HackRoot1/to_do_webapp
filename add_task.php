@@ -42,41 +42,23 @@
 
         <!-- ======== jquery link ========= -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    
+
         <script>
             $(document).ready(function(){
-                $("#submitBtn").click(function(e){
-                    var inputDate = new Date($('#dateInput').val());
-                    var currentDate = new Date();
-
-                    if (inputDate < currentDate || inputDate == "" || inputDate == null) {
-                        alert('Please select an upcoming date.');
-                        return false;
-                    }
-
-                    e.preventDefault();
+                $(document).on("click", "#submitBtn", function(e){
+                    e.preventDefault
+                    var info = $("#form-data").serialize();
+                    // console.log(info);
                     $.ajax({
                         url : "add_task_data.php",
-                        type : "POST",
-                        data : $("#form-data").serialize(),
+                        method : "POST",
+                        data : info,
                         success : function(data){
-
-                            // applied validations
-                            if(data == 0){
-                                $("#result-data .success-result").html("Please enter the task title.").slideDown(2000);
-                            }else if(data == 1){
-                                $("#result-data .success-result").html("Please enter the task description.").slideDown(2000);
-                            }else if(data == 2){
-                                $("#result-data .success-result").html("Please enter the task category.").slideDown(2000);
-                            }else{
-                                $("#result-data .success-result").html(data).slideDown(2000).slideUp(2000);
-                                $("#form-data").trigger("reset");
-                                // alert(data);
-                            }
+                            $("#result-data success-result").html(data);
                         }
                     });
                 });
-            });
+            }); 
         </script>
     </div>
 <?php 

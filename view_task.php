@@ -4,46 +4,6 @@
 
         <div class="dash-content">
 
-            <!-- <div class="overview">
-                <div class="title filter-options">
-                    <div>
-                        <i class="uil uil-filter"></i>
-                        <span class="text">Filters</span>
-                    </div>
-                    <div id = "filter-close-open" style = "cursor: pointer">
-                        <i class="uil uil-minus" id = "minus" style = "display: none"></i>
-                        <i class="uil uil-minus" id = "minus"></i>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="boxes">
-                <div class="filter-box">
-                    <div class = "filter-options">
-                        <select name="sorts" id="sorting-filters">
-                            <option value="task_title">sort by name</option>
-                            <option value="task_category">sort by category</option>
-                            <option value="task_due_date">sort by date</option>
-                        </select>
-                    </div>
-
-                    <div class = "filter-options">
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="all" id="all" checked>
-                            <label for="all">All</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="1" id="completed">
-                            <label for="completed">completed</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="0" id="pending">
-                            <label for="pending">pending</label>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
 
             <div class="activity">
                 <div class="title">
@@ -171,10 +131,7 @@
 
             // filter search using checkboxes
             $(document).on("click", ".checkboxBtn", function(){
-                // var id = [];
-                // $(":checkbox:checked").each(function(key){
-                    // });
-                // alert($(this).html());
+                
                 $(".checkboxBtn").removeClass("active");
                 $(this).addClass("active");
                 var id = $(this).html();
