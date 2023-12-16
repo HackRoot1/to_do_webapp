@@ -74,6 +74,7 @@
             outline: none;
             border: none;
             margin: 5px 5px;
+            padding-left: 10px;
             border-bottom: 1px solid black;
         }
 
@@ -83,6 +84,7 @@
             border-radius: 50px;
             border: none;
             outline: none;
+            padding-left: 0;
         }
 
         #error{

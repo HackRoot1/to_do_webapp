@@ -234,11 +234,18 @@
             // filter data based on options
             $(document).on("change", "#sorting-filters", function(){
                 var sort_value = $(this).val();
+
+                var sortObj = { sort_value : sort_value};
+                if($(".checkboxBtn.active").html() != "All"){
+                    var filter = $(".checkboxBtn.active").html();
+                    alert(filter);
+                    sortObj["filter"] = filter;
+                }
                 // alert(sort_value);
                 $.ajax({
                     url : "sort_data.php",
                     type : "POST",
-                    data : {sort : sort_value},
+                    data : sortObj,
                     success : function(data){
                         $(".activity-data tbody").html(data);
                     }
