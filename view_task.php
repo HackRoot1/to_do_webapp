@@ -29,13 +29,9 @@
                     </div>
 
                     <div class = "options">
-                        <div>
-                            <i class="uil uil-filter"></i>
-                            <span>Filters</span>
-                        </div>
                         <div id = "sort-btn">
                             <i class="uil uil-sort"></i>
-                            <span>Sorts</span>
+                            <span>Sort</span>
                         </div>
                     </div>
                 </div>
@@ -241,7 +237,10 @@
                     alert(filter);
                     sortObj["filter"] = filter;
                 }
-                // alert(sort_value);
+
+                // if($(""))
+
+
                 $.ajax({
                     url : "sort_data.php",
                     type : "POST",

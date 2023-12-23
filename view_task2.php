@@ -4,46 +4,6 @@
 
         <div class="dash-content">
 
-            <!-- <div class="overview">
-                <div class="title filter-options">
-                    <div>
-                        <i class="uil uil-filter"></i>
-                        <span class="text">Filters</span>
-                    </div>
-                    <div id = "filter-close-open" style = "cursor: pointer">
-                        <i class="uil uil-minus" id = "minus" style = "display: none"></i>
-                        <i class="uil uil-minus" id = "minus"></i>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="boxes">
-                <div class="filter-box">
-                    <div class = "filter-options">
-                        <select name="sorts" id="sorting-filters">
-                            <option value="task_title">sort by name</option>
-                            <option value="task_category">sort by category</option>
-                            <option value="task_due_date">sort by date</option>
-                        </select>
-                    </div>
-
-                    <div class = "filter-options">
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="all" id="all" checked>
-                            <label for="all">All</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="1" id="completed">
-                            <label for="completed">completed</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" class = "checkboxBtn" value="0" id="pending">
-                            <label for="pending">pending</label>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
 
             <div class="activity">
                 <div class="title">
@@ -62,25 +22,21 @@
                 
                 <div id = "task_filters">
                     <div class = "links">
-                        <span class = "checkboxBtn active">All</span>
+                        <span class = "input-values checkboxBtn active">All</span>
                         <!-- <span class = "checkboxBtn">Active</span> -->
-                        <span class = "checkboxBtn">Pending</span>
-                        <span class = "checkboxBtn">Completed</span>
+                        <span class = "input-values checkboxBtn">Pending</span>
+                        <span class = "input-values checkboxBtn">Completed</span>
                     </div>
 
                     <div class = "options">
-                        <div>
-                            <i class="uil uil-filter"></i>
-                            <span>Filters</span>
-                        </div>
                         <div id = "sort-btn">
                             <i class="uil uil-sort"></i>
-                            <span>Sorts</span>
+                            <span>Sort</span>
                         </div>
                     </div>
                 </div>
                 <div id = "select-sort-options">
-                    <select name="sorts" id="sorting-filters">
+                    <select name="sorts" id="sorting-filters" class = "input-values">
                         <option value="task_title">sort by name</option>
                         <option value="task_category">sort by category</option>
                         <option value="task_due_date">sort by date</option>
@@ -171,31 +127,29 @@
 
             // filter search using checkboxes
             $(document).on("click", ".checkboxBtn", function(){
-                // var id = [];
-                // $(":checkbox:checked").each(function(key){
-                    // });
-                // alert($(this).html());
+                
                 $(".checkboxBtn").removeClass("active");
                 $(this).addClass("active");
                 var id = $(this).html();
 
                 if(id == ""){
                     loadData();
-                }else{
-                    $.ajax({
-                        url : "filter_tasks_data.php",
-                        type : "POST",
-                        data : {id : id}, 
-                        success : function(data){
-                            if(data){
-                                // alert(data);
-                                $(".activity-data tbody").html(data);
-                            }else{
-                                $(".activity-data tbody").html("Only single data found");
-                            }
-                        }
-                    });
                 }
+                // else{
+                //     $.ajax({
+                //         url : "filter_tasks_data.php",
+                //         type : "POST",
+                //         data : {id : id}, 
+                //         success : function(data){
+                //             if(data){
+                //                 // alert(data);
+                //                 $(".activity-data tbody").html(data);
+                //             }else{
+                //                 $(".activity-data tbody").html("Only single data found");
+                //             }
+                //         }
+                //     });
+                // }
             });
 
             // deleting records data from table
@@ -275,13 +229,28 @@
 
 
             // filter data based on options
-            $(document).on("change", "#sorting-filters", function(){
+            $(document).on("change click input", ".input-values", function(){
+
                 var sort_value = $(this).val();
                 // alert(sort_value);
+                var sortObj = { sort_value : sort_value};
+                if($(".checkboxBtn.active").html() != "All"){
+                    var filter = $(".checkboxBtn.active").html();
+                    alert(filter);
+                    sortObj["filter"] = filter;
+                }
+
+                if($("#global-search").val() != ""){
+                    var search = $("#global-search").val();
+                    alert(search);
+                    sortObj['search'] = search;
+                }
+
+
                 $.ajax({
-                    url : "sort_data.php",
+                    url : "sort_data2.php",
                     type : "POST",
-                    data : {sort : sort_value},
+                    data : sortObj,
                     success : function(data){
                         $(".activity-data tbody").html(data);
                     }
@@ -291,6 +260,10 @@
             
         });
         
+
+
+
+
         // filter button + or - 
         $(document).on("click", "#filter-close-open:has(i#plus)", function(){
             $("#filter-close-open").html("<i class='uil uil-minus' id = 'minus'></i>");

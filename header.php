@@ -156,7 +156,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <i class="uil uil-bars sidebar-toggle"></i>
             <div class="search-box">
                 <i class="uil uil-search"></i>
-                <input type="text" id = "global-search" placeholder="Search here....">
+                <input type="text" id = "global-search" class="input-values" placeholder="Search here....">
             </div>
             <div id = "model-open">
                 <div>
