@@ -4,7 +4,13 @@ require("config.php");
 
 
 session_start();
-$query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} ORDER BY task_due_date";
+
+// getting current time
+$t=time();
+$date = (date("Y-m-d",$t));
+// end
+
+$query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_due_date >= '{$date}' ORDER BY task_due_date";
 $fetch_tasks = mysqli_query($conn, $query) or die("Query FAiled");
 
 

@@ -13,5 +13,3 @@
     }else{
         echo "Can't Delete Record.";
     }
-
-?>

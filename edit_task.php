@@ -27,4 +27,3 @@
     }else{
         echo "Record not updated";
     }  
-?>
