@@ -10,6 +10,8 @@
     $data = mysqli_fetch_assoc($result);
 ?>
 
+
+
 <button class = "close-btn">
             X
 </button>

@@ -3,6 +3,7 @@
 
     
     session_start();
+
     $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']}";
     $fetch_tasks = mysqli_query($conn, $query) or die("Query FAiled");
 
@@ -19,6 +20,7 @@
     
     
 ?>
+
 <div class="box box1">
     <span class="text">Total Tasks :</span>
     <span class="number"><?php echo mysqli_num_rows($fetch_tasks) ?></span>

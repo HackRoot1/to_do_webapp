@@ -17,28 +17,19 @@
     // $filters_data = implode(', ', $filters);
 
     if($filters_data != "all"){
-
-        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data)";
-        // foreach ($filters as $key => $value){
-        //     if(count($filters) == 1){
-        //         $query .= "'" .$value. "'";
-        //     }elseif($value == end($filters)){
-        //         $query .= "'" .$value. "'";
-        //     }else{
-        //         $query .= "'" .$value. "', ";
-        //     }
-        // }
-        // $query .= ")";
+        // if not selected all
+        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data) ORDER BY task_due_date ASC";
     }else{
+        // else all
         $filters_data = "0, 1";
-        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data)";
+        $query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_status In ($filters_data) ORDER BY task_due_date ASC";
     }
-    
     
     
     $fetch_tasks = mysqli_query($conn, $query) or die("Query FAiled");
     
     
+
     if (mysqli_num_rows($fetch_tasks) > 0) {
         while ($tasks_list_data = mysqli_fetch_assoc($fetch_tasks)) {
         ?>        

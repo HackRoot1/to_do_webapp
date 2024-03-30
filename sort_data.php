@@ -5,9 +5,6 @@ session_start();
 
 $sort_value = $_POST['sort_value'];
 
-// echo $_POST['filter'];
-// exit();
-
 if(isset($_POST['filter'])){
     if($_POST['filter'] == "Pending"){
         $_POST['filter'] = "0";

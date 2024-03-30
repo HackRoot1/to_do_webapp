@@ -1,4 +1,6 @@
 <?php 
+
+    $display = "display:none";
     require("header.php");
     require("config.php");
 ?>
@@ -46,7 +48,7 @@
         <script>
             $(document).ready(function(){
                 $(document).on("click", "#submitBtn", function(e){
-                    e.preventDefault
+                    // e.preventDefault();
                     var info = $("#form-data").serialize();
                     // console.log(info);
                     $.ajax({
@@ -54,11 +56,13 @@
                         method : "POST",
                         data : info,
                         success : function(data){
-                            $("#result-data success-result").html(data);
+                            $("#result-data .success-result").html(data);
+                            window.location.href = "./view_task.php";
                         }
                     });
                 });
-            }); 
+            });
+
         </script>
     </div>
 <?php 

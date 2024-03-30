@@ -67,29 +67,6 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- ======== jquery link ========= -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     
-    <script>
-
-        $(document).ready(function(){
-            $("#global-search").on("input", function(){
-                var value = $(this).val();
-
-                // alert(value);
-                // search through ajax
-                $.ajax({
-                    url : "global-search.php",
-                    method : "POST",
-                    data : { search : value},
-                    success : function(data){
-                        if(data){
-                            $(".activity-data tbody").html(data);
-                        }else{
-                            loadData();
-                        }
-                    }
-                });
-            });
-        });
-    </script>
     <title>Dashboard</title>
 </head>
 <body>
@@ -154,7 +131,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
+            <div class="search-box" style="<?php echo $display ?? "" ?>">
                 <i class="uil uil-search"></i>
                 <input type="text" id = "global-search" class="input-values" placeholder="Search here....">
             </div>

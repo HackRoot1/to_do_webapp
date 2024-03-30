@@ -1,4 +1,6 @@
 <?php 
+
+    $display = "display:none";
     include("header.php");
 
 ?>

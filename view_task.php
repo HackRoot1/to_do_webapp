@@ -22,7 +22,7 @@
                 
                 <div id = "task_filters">
                     <div class = "links">
-                        <span class = "checkboxBtn active">All</span>
+                        <span class = "checkboxBtn active all">All</span>
                         <!-- <span class = "checkboxBtn">Active</span> -->
                         <span class = "checkboxBtn">Pending</span>
                         <span class = "checkboxBtn">Completed</span>
@@ -111,11 +111,13 @@
                 });
             }
 
-
+            // by default 
             loadData();
 
-            $("#select-sort-options").hide();
 
+            // =============== sorting ===========
+            $("#select-sort-options").hide();
+            
             $("#sort-btn").on("click", function(){
                 $("#select-sort-options").fadeToggle();
             });
@@ -123,6 +125,7 @@
             $("#select-sort-options").on("change", function(){
                 $(this).fadeOut();
             });
+            // =============== end sorting ===========
             
 
             // filter search using checkboxes
@@ -150,6 +153,7 @@
                     });
                 }
             });
+
 
             // deleting records data from table
             $(document).on("click", "#delete", function(){
@@ -232,13 +236,12 @@
                 var sort_value = $(this).val();
 
                 var sortObj = { sort_value : sort_value};
+
                 if($(".checkboxBtn.active").html() != "All"){
                     var filter = $(".checkboxBtn.active").html();
-                    alert(filter);
+                    // alert(filter);
                     sortObj["filter"] = filter;
                 }
-
-                // if($(""))
 
 
                 $.ajax({
@@ -252,7 +255,28 @@
             });
 
             
+            // =================== search filter
+            $("#global-search").on("input", function(){
+                var value = $(this).val();
+
+                // search through ajax
+                $(".checkboxBtn").removeClass("active");
+                $("#task_filters .links .checkboxBtn.all").addClass("active");
+                $.ajax({
+                    url : "global-search.php",
+                    method : "POST",
+                    data : { search : value},
+                    success : function(data){
+                        if(data){
+                            $(".activity-data tbody").html(data);
+                        }else{
+                            loadData();
+                        }
+                    }
+                });
+            });
         });
+    
         
         // filter button + or - 
         $(document).on("click", "#filter-close-open:has(i#plus)", function(){

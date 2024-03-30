@@ -10,7 +10,7 @@ $t=time();
 $date = (date("Y-m-d",$t));
 // end
 
-$query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_due_date >= '{$date}' ORDER BY task_due_date";
+$query = "SELECT * FROM tasks  WHERE user_id = {$_SESSION['id']} AND task_due_date >= '{$date}' AND task_status = 0 ORDER BY task_due_date";
 $fetch_tasks = mysqli_query($conn, $query) or die("Query FAiled");
 
 
