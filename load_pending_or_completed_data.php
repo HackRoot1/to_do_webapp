@@ -13,10 +13,16 @@
     $data = mysqli_fetch_assoc($fetch_extra_tasks_into);
     
     
-    $query3 = "SELECT count(task_status) as status2 FROM tasks WHERE task_status = '0' AND user_id = {$_SESSION['id']}";
+    $query3 = "SELECT count(task_status) as status FROM tasks WHERE task_status = '0' AND user_id = {$_SESSION['id']}";
     $fetch_extra_tasks_into2 = mysqli_query($conn,$query3) or die("Query Failed3");
 
     $data2 = mysqli_fetch_assoc($fetch_extra_tasks_into2);
+    
+    
+    $query4 = "SELECT count(task_status) as status FROM tasks WHERE task_status = '2' AND user_id = {$_SESSION['id']}";
+    $fetch_extra_tasks_into3 = mysqli_query($conn,$query4) or die("Query Failed3");
+
+    $data3 = mysqli_fetch_assoc($fetch_extra_tasks_into3);
     
     
 ?>
@@ -39,7 +45,19 @@
     <span class="text">Pending Tasks :</span>
     <span class="number">
         <?php 
-            echo $data2['status2'];
+            echo $data2['status'];
         ?>
     </span>
 </div>
+
+<?php if(isset($data3['status']) && $data3['status'] != 0): ?>
+
+<div class="box box3">
+    <span class="text">Incomplete Tasks :</span>
+    <span class="number">
+        <?php 
+            echo $data3['status'];
+        ?>
+    </span>
+</div>
+<?php endif; ?>

@@ -11,6 +11,7 @@
         $password = $_POST['password'];
         if($firstName == "" || $lastName == "" || $email == "" || $username == "" || $password == "" || strlen($password) <= 6){
             echo "Please fill the required fields";
+            exit();
         }else{
 
             $password = md5($_POST['password']);
@@ -19,6 +20,7 @@
 
             if(mysqli_num_rows($checkQueryResult) === 1){
                 echo "The username is already registered. Please login.";
+                exit();
             }else{
 
                 $query = "  INSERT INTO 
@@ -35,14 +37,14 @@
                         session_start();
                         session_unset();
                         $_SESSION['id'] = $data['id'];
-                        ob_start();
+                        // ob_start();
                         header("Location: index.php");
-                        ob_end_clean();
+                        // ob_end_clean();
                         exit();
                     }else{
-                        ob_start();
+                        // ob_start();
                         header("Location: login.php");
-                        ob_end_clean();
+                        // ob_end_clean();
                         exit();
                     }
                 }else{

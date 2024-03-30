@@ -1,5 +1,22 @@
 <?php 
     require("header.php");
+    require("config.php");
+    
+// getting current time
+$t=time();
+$date = (date("Y-m-d",$t));
+// end
+
+$update_query = "UPDATE 
+                    tasks 
+                SET 
+                    task_status = '2' 
+                WHERE 
+                    task_due_date < '{$date}' 
+                AND
+                    user_id = {$_SESSION['id']}";
+mysqli_query($conn, $update_query);
+mysqli_close($conn);
 ?>
 
         <div class="dash-content">
@@ -26,6 +43,7 @@
                         <!-- <span class = "checkboxBtn">Active</span> -->
                         <span class = "checkboxBtn">Pending</span>
                         <span class = "checkboxBtn">Completed</span>
+                        <span class = "checkboxBtn">Incomplete</span>
                     </div>
 
                     <div class = "options">

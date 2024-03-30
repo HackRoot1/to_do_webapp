@@ -57,6 +57,7 @@
                         data : info,
                         success : function(data){
                             $("#result-data .success-result").html(data);
+                            alert(data);
                             window.location.href = "./view_task.php";
                         }
                     });
