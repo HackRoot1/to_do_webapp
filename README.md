@@ -28,7 +28,7 @@ Follow these steps to set up and run the To-Do App (PHP) locally:
 1. **Clone the Repository:**
    - Clone the repository to your local machine using the following command:
      ```
-     git clone https://github.com/your-username/todo-app-php.git
+     https://github.com/HackRoot1/to_do_webapp.git
      ```
 
 2. **Import Database Schema:**
