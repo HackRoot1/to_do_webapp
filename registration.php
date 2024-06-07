@@ -143,7 +143,7 @@
             </div>
             <div id="error"></div>
             <div class="login-form">
-                <form action="" name = "registrationForm" method = "POST">
+                <form action="<?= $_SERVER['PHP_SELF'] ?>" name = "registrationForm" method = "POST">
                     <div>
                         <label for="fname">First Name:</label>
                         <input type="text" name = "firstName" id = "fname" placeholder="Enter your username">
@@ -196,7 +196,6 @@ if(isset($_POST['submit'])){
             document.getElementById('error').innerText = 'Please fill the required fields';
         </script>
         ";
-        // echo "error";
     }else{
 
         $password = md5($_POST['password']);
@@ -210,7 +209,6 @@ if(isset($_POST['submit'])){
                 document.getElementById('error').innerText = 'The username is already registered. Please login.';
             </script>
             ";
-            // echo "The username is already registered. Please login.";
         }else{
 
             $query = "  INSERT INTO 
@@ -244,7 +242,6 @@ if(isset($_POST['submit'])){
                     document.getElementById('error').innerText = 'Query Not run.';
                 </script>
                 ";
-                // echo "Query Not run.";
             }
         }
     }

@@ -1,7 +1,5 @@
 <?php 
 
-
-
 if (mysqli_num_rows($fetch_tasks) > 0) {
     while ($tasks_list_data = mysqli_fetch_assoc($fetch_tasks)) {
 ?>

@@ -85,7 +85,7 @@
             // fetching all data and displaying in table
             function loadData(){
                 $.ajax({
-                    url : "fetch_all_data_by_order.php",
+                    url : "./Includes/fetch_all_data_by_order.php",
                     type : "POST",
                     success : function(data){
                         $(".activity-data tbody").html(data);
@@ -95,7 +95,7 @@
 
                 // ajax for loading pending tasks and completed tasks
                 $.ajax({
-                    url : "load_pending_or_completed_data.php",
+                    url : "./Includes/load_pending_or_completed_data.php",
                     type : "POST",
                     success : function(data){
                         $(".boxes").html(data);
@@ -111,7 +111,7 @@
             $(document).on("click", "#delete", function(){
                 var id = $(this).data('did');
                 $.ajax({
-                    url : "delete_data.php",
+                    url : "./Includes/delete_data.php",
                     type : "POST",
                     data : {id : id },
                     success : function(data){
@@ -133,7 +133,7 @@
                 $("#model").show();
 
                 $.ajax({
-                    url : "edit_data.php",
+                    url : "./Includes/edit_data.php",
                     type : "POST",
                     data : {id : id },
                     success : function(data){
@@ -154,7 +154,7 @@
             // editing data using model box
             $(document).on("click", "#save-data", function(){
                 $.ajax({
-                    url : "edit_task.php",
+                    url : "./Includes/edit_task.php",
                     type : "POST",                    
                     data : $("#form-data").serialize(),
                     success : function(data){
@@ -172,7 +172,7 @@
                 var id = $(this).data('cid');
                 // alert(id);
                 $.ajax({
-                    url : "task_modify.php",
+                    url : "./Includes/task_modify.php",
                     type : "POST",
                     data : {id : id},
                     success : function(data){

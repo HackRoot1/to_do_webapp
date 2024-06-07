@@ -32,13 +32,8 @@ if (session_status() === PHP_SESSION_NONE) {
         // Check if the query was successful
         if ($userData) {
             $userInfo = mysqli_fetch_assoc($userData);
-            // echo "<pre>";
-            // print_r($userInfo);
-            // echo "</pre>";
-            // exit();
         } else {
-            // Handle database query error, you may want to log or display an error message
-            // For example: die("Database query error: " . mysqli_error($conn));
+            die("Database query error: " . mysqli_error($conn));
         }
     } else {
         // Redirect to the login page if the 'id' session variable is not set
@@ -141,7 +136,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         echo $userInfo['username'];
                     ?>
                 </div>
-                <img src="./assets/images/<?php echo $userInfo['profile_pic'] ?>">                    
+                <img src="./Uploads/<?php echo $userInfo['profile_pic'] ?>">                    
                 <i class="uil uil-angle-down"></i>
             </div>
         </div>

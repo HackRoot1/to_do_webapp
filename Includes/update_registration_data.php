@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) {
-    include("config.php");
+    include("../config.php");
     session_start();
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
         $profile_name = $_FILES['profile']['name'];
         $temp_name = $_FILES['profile']['tmp_name'];
 
-        $folder_name = "./assets/images/" . $profile_name;
+        $folder_name = "../Uploads/" . $profile_name;
         move_uploaded_file($temp_name, $folder_name);
     } else {
         // No file uploaded, keep the existing profile picture
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_query($conn, $query)) {
         $message = "Successfully update data.";
         $message = urlencode($message);
-        header("Location: setting_page.php?message=$message");
+        header("Location: ../setting_page.php?message=$message");
         exit();
     } else {
         echo "Something went wrong.";

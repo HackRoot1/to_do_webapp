@@ -541,10 +541,15 @@ body.dark li a:hover::before{
 #form-data div input{
     height: 40px;
     padding: 10px 20px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--border-color);
     margin: 10px 0px;
     display: inline-block;
     width: calc(100vw / 5);
+    color: var(--text-color);
 }
 
 #form-data .form-btn{
@@ -561,11 +566,13 @@ body.dark li a:hover::before{
     border-radius: 5px;
     outline: 1px solid white;
     border: 1px solid white;
+    background-color: var(--title-icon-color);
     font-size: 15px;
     font-weight: 600;
     color: black;
     padding: 0;
     margin: 0 20px;
+    cursor: pointer;
 }
 /* end */
 
@@ -773,10 +780,14 @@ body.dark li a:hover::before{
 #model .model-box div input{
     height: 40px;
     padding: 10px 20px;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     margin: 10px 0px;
     display: inline-block;
     width: calc(100vw / 5);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--border-color);
 }
 
 #model .model-box .form-btn{

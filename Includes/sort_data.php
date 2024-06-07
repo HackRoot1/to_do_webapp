@@ -1,6 +1,6 @@
 <?php
 
-require("config.php");
+require("../config.php");
 session_start();
 
 $sort_value = $_POST['sort_value'];

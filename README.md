@@ -2,7 +2,7 @@
 
 ## Overview
 
-The To-Do App (PHP) is a simple web-based application developed using PHP, MySQL, HTML, CSS, and JavaScript. It helps users manage their tasks and stay organized by providing features such as task creation, updating, deletion, deadline setting, and task prioritization. This app is suitable for personal use or team collaboration, providing an efficient way to track tasks and increase productivity.
+The To-Do App (PHP) is a simple web-based application developed using PHP, MySQL, HTML, CSS, and JavaScript, jQuery and Ajax. It helps users manage their tasks and stay organized by providing features such as task creation, updating, deletion, deadline setting, and task prioritization. This app is suitable for personal use or team collaboration, providing an efficient way to track tasks and increase productivity.
 
 ## Features
 
@@ -10,7 +10,7 @@ The To-Do App (PHP) is a simple web-based application developed using PHP, MySQL
 - **Deadline Setting:** Enables users to set deadlines for tasks to prioritize and manage time effectively.
 - **Task Prioritization:** Provides options to prioritize tasks based on importance or urgency.
 - **Task Categories:** Allows users to categorize tasks into different categories or projects for better organization.
-- **Task Status:** Provides status indicators to track the progress of tasks, such as "To-Do," "In Progress," and "Completed."
+- **Task Status:** Provides status indicators to track the progress of tasks, such as "Completed," "Incompleted," and "Pending."
 - **User Authentication:** Supports user authentication to ensure data privacy and security.
 - **Responsive Design:** Adapts to different screen sizes for seamless usage on various devices.
 
@@ -32,7 +32,7 @@ Follow these steps to set up and run the To-Do App (PHP) locally:
      ```
 
 2. **Import Database Schema:**
-   - Import the provided SQL database schema (`todo_app.sql`) into your MySQL database using a tool like phpMyAdmin or MySQL command line.
+   - Import the provided SQL database schema (`todoapp.sql`) into your MySQL database using a tool like phpMyAdmin.
 
 3. **Set Up Database Connection:**
    - Navigate to the `config.php` file in the project directory and update the database connection settings (hostname, username, password, database name) according to your MySQL configuration.
@@ -53,14 +53,24 @@ Follow these steps to set up and run the To-Do App (PHP) locally:
 
 ## Demo Screenshots
 
-<!-- ![Home Page](demo/home-page.png) -->
-*Home Page: Overview of To-Do App*
+![Login Page](demo/login.png)
+*Login Page: User Login Page*
 
-<!-- ![Task List](demo/task-list.png) -->
-*Task List: View and Manage Tasks*
+![Registration Page](demo/registration.png)
+*Registration Page: User can register*
 
-<!-- ![Task Details](demo/task-details.png) -->
-*Task Details: Edit Task Details and Set Deadlines*
+![Dashboard](demo/dashboard.png)
+*User Dashboard: View and Manage upcomming Tasks*
+
+![add tasks](demo/add_tasks.png)
+*Add Tasks: Add new Tasks*
+
+![View Tasks](demo/view_tasks.png)
+*View Tasks: View and manage all tasks*
+
+![profile](demo/view_tasks.png)
+*Profile Page: View and manage Profile Settings*
+
 
 ## Contributing
 

@@ -49,10 +49,10 @@
             $(document).ready(function(){
                 $(document).on("click", "#submitBtn", function(e){
                     // e.preventDefault();
+                    
                     var info = $("#form-data").serialize();
-                    // console.log(info);
                     $.ajax({
-                        url : "add_task_data.php",
+                        url : "./Includes/add_task_data.php",
                         method : "POST",
                         data : info,
                         success : function(data){

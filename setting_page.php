@@ -6,13 +6,13 @@
 ?>
     <section id = "form-section">
         <div class="login-form">
-            <form action="./update_registration_data.php" method = "POST" enctype="multipart/form-data">
+            <form action="./Includes/update_registration_data.php" method = "POST" enctype="multipart/form-data">
                 <div>
                     <label for="preview">Profile Preview: </label>
                     <?php 
                         if($userInfo['profile_pic']){
                         ?>
-                            <img src="./assets/images/<?php echo $userInfo['profile_pic'] ?>" id="previewImg" alt="Profile pic" width="100px" height="100px">
+                            <img src="./Uploads/<?php echo $userInfo['profile_pic'] ?>" id="previewImg" alt="Profile pic" width="100px" height="100px">
                         <?php
                         }else{
                             echo "Please Select Profile pic";
