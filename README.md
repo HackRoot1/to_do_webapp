@@ -68,7 +68,7 @@ Follow these steps to set up and run the To-Do App (PHP) locally:
 ![View Tasks](demo/view_tasks.png)
 *View Tasks: View and manage all tasks*
 
-![profile](demo/view_tasks.png)
+![profile](demo/profile.png)
 *Profile Page: View and manage Profile Settings*
 
 
