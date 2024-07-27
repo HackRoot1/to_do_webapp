@@ -1,24 +1,28 @@
 <?php
     if(isset($_POST['submit'])){
         include("config.php");
-        $username = $_POST['username'];
-        $password = md5($_POST['pass']);
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = mysqli_real_escape_string($conn, $_POST['pass']);
 
-        $query = "SELECT * FROM users_data WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM users_data WHERE username = '$username'";
         $result = mysqli_query($conn, $query) or die("Query Failed");
         $data = mysqli_fetch_assoc($result);
 
         
-        if(mysqli_num_rows($result) === 1){
+        if($data && password_verify($password, $data['password'])){
             session_start();
             session_unset();
+            // Regenerate session ID to prevent session fixation attacks
+            session_regenerate_id(true);
             $_SESSION['id'] = $data['id'];
             header("Location: ./index.php");
             exit();
         }else{
-            header("Location: ./login.php");
+            header("Location: ./login.php?error=invalid_credentials");
             exit();
         }
+
+        mysqli_close($conn);
     }
 ?>
 

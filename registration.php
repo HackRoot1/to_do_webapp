@@ -184,11 +184,12 @@
 if(isset($_POST['submit'])){
     include("config.php");
 
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    
     if($firstName == "" || $lastName == "" || $email == "" || $username == "" || $password == "" || strlen($password) <= 6){
         echo "
         <script>
@@ -198,7 +199,7 @@ if(isset($_POST['submit'])){
         ";
     }else{
 
-        $password = md5($_POST['password']);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $checkQuery = "SELECT * FROM users_data WHERE username = '{$username}' AND password = '{$password}'; ";
         $checkQueryResult = mysqli_query($conn, $checkQuery);
 
